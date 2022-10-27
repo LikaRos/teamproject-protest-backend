@@ -12,7 +12,6 @@ const sendEmail = async (data) => {
     html: "2-3 недели",
   };
   console.log(mail);
-  //   const mail = { ...data, from: "lika.rossinskayad@gmail.com" };
   await sgMail.send(mail);
   return true;
 };

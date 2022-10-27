@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const gravatar = require("gravatar");
 const { nanoid } = require("nanoid");
+const sendEmail = require("../../helpers/sendEmail");
 
 const { User } = require("../../models/user");
 
@@ -15,7 +16,6 @@ const register = async (req, res) => {
   if (user) {
     throw RequestError(409, "Email in use");
   }
-  const { BASE_URL } = process.env;
   const hashPassword = await bcrypt.hash(password, 10);
   const verificationToken = nanoid();
 
