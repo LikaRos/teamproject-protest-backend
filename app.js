@@ -8,7 +8,7 @@ const nanoid = require("nanoid");
 const path = require("path");
 const multer = require("multer");
 const authRouter = require("./routes/api/auth");
-// const testRouter = require("./routes/api/test");
+const questionsRouter = require("./routes/api/questions");
 
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/api/auth", authRouter);
-// app.use("/api/questions", questionsRouter);
+app.use("/api/questions", questionsRouter);
 app.set("json space", 8);
 
 app.use((req, res) => {

@@ -1,6 +1,6 @@
 const express = require("express");
-const ctrl = require("../../controllers/tests");
-// const { ctrlWrapper } = require("../../helpers");
+const ctrl = require("../../controllers/questions");
+const { ctrlWrapper } = require("../../helpers");
 // const { validateBody } = require("../../middlewares");
 const { schemas } = require("../../models/question");
 
