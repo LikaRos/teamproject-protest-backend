@@ -36,7 +36,7 @@ const questionSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-const 
+const updateRightAnswerSchema = {};
 
 const schemas = {
   updateRightAnswerSchema,
