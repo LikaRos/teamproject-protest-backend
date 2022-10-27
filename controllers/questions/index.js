@@ -1,5 +1,5 @@
-const getRandomQuestions = require("./getRandomQuestions");
+const getRandomQuestion = require("./getRandomQuestion");
 
 module.exports = {
-  getRandomQuestions,
+  getRandomQuestion,
 };

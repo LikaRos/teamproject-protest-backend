@@ -7,41 +7,42 @@ const questionSchema = new Schema(
   {
     question: {
       type: String,
-      required: true,
+      required: String,
     },
-
     questionId: {
       type: String,
       required: true,
     },
-
     answers: {
       type: [],
       required: true,
     },
-
     rightAnswer: {
       type: String,
       required: true,
-      unique: true,
       default: null,
     },
-    type: {
-      type: String,
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
       required: true,
-      enum: ["tech", "theory"],
     },
   },
-
   { versionKey: false, timestamps: true }
 );
 
-const updateRightAnswerSchema = {};
+questionSchema.post("save", handleSaveErrors);
 
+const updateAnswerSchema = Joi.object({
+  rightAnswer: Joi.string().required(),
+  questionId: Joi.string().required(),
+});
 const schemas = {
-  updateRightAnswerSchema,
+  updateAnswerSchema,
 };
-const Question = model("question", "questionSchema");
+
+const Question = model("question", questionSchema);
+
 module.exports = {
   Question,
   schemas,

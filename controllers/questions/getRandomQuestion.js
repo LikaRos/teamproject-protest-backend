@@ -6,7 +6,7 @@ Model.find()
   .exec();
 */
 /* Добавить функцию  Math.random()*/
-const getRandomQuestions = async (req, res) => {
+const getRandomQuestion = async (req, res) => {
   const { page = 1, limit = 1 } = req.query;
   const skip = (page - 1) * limit;
   const total = 12;
@@ -19,4 +19,4 @@ const getRandomQuestions = async (req, res) => {
   res.json(result);
 };
 
-module.exports = getRandomQuestions;
+module.exports = getRandomQuestion;
