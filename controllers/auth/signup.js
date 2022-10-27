@@ -9,7 +9,7 @@ const { User } = require("../../models/user");
 const { RequestError, createVerifyEmail } = require("../../helpers");
 
 const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -20,7 +20,6 @@ const register = async (req, res) => {
   const verificationToken = nanoid();
 
   const result = await User.create({
-    name,
     email,
     password: hashPassword,
     avatarURL: gravatar.url(email),
