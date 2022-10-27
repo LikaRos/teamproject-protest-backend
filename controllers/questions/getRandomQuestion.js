@@ -5,7 +5,7 @@ Model.find()
   .limit(limit)
   .exec();
 */
-/* Добавить функцию  Math.random()*/
+/* Добавить функцию  Math.random() */
 const getRandomQuestion = async (req, res) => {
   const { page = 1, limit = 1 } = req.query;
   const skip = (page - 1) * limit;
