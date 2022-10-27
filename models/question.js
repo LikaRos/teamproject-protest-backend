@@ -6,15 +6,13 @@ const { handleSaveErrors } = require("../middlewares");
 const questionSchema = new Schema(
   {
     question: {
-      type: String,
-      required: String,
-    },
-    questionId: {
-      type: String,
+      type: [String],
       required: true,
+      unique: true,
     },
+
     answers: {
-      type: [],
+      type: String,
       required: true,
     },
     rightAnswer: {
@@ -22,10 +20,11 @@ const questionSchema = new Schema(
       required: true,
       default: null,
     },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
+
+    type: {
+      type: String,
       required: true,
+      enum: ["tech", "theory"],
     },
   },
   { versionKey: false, timestamps: true }
@@ -33,12 +32,19 @@ const questionSchema = new Schema(
 
 questionSchema.post("save", handleSaveErrors);
 
-const updateAnswerSchema = Joi.object({
+const loadSchema = Joi.object({
+  question: Joi.string().required(),
+  answers: Joi.array().required(),
   rightAnswer: Joi.string().required(),
-  questionId: Joi.string().required(),
+  type: Joi.string().required(),
+});
+
+const updateQuestionSchema = Joi.object({
+  rightAnswer: Joi.string().required(),
 });
 const schemas = {
-  updateAnswerSchema,
+  loadSchema,
+  updateQuestionSchema,
 };
 
 const Question = model("question", questionSchema);
