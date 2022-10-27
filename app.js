@@ -3,10 +3,10 @@ require("dotenv").config();
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
-const fs = require("fs/promises");
-const nanoid = require("nanoid");
-const path = require("path");
-const multer = require("multer");
+// const fs = require("fs/promises");
+// const nanoid = require("nanoid");
+// const path = require("path");
+// const multer = require("multer");
 const authRouter = require("./routes/api/auth");
 const questionsRouter = require("./routes/api/questions");
 

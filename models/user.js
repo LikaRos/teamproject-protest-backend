@@ -2,13 +2,8 @@ const Joi = require("joi");
 const { Schema, model } = require("mongoose");
 
 const handleMongooseSchemaError = require("../helpers/handleMongooseSchemaError");
-//модель користувача
 const userSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -17,12 +12,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "Password is required"],
-      minlength: 6,
-    },
-    subscription: {
-      type: String,
-      enum: ["starter", "pro", "business"],
-      default: "starter",
+      minlength: 16,
     },
     avatarURL: {
       type: String,
@@ -46,14 +36,13 @@ const userSchema = new Schema(
 userSchema.post("save", handleMongooseSchemaError);
 
 const registerSchema = Joi.object({
-  name: Joi.string().required(),
   email: Joi.string().required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(16).required(),
 });
 
 const loginSchema = Joi.object({
   email: Joi.string().required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(16).required(),
 });
 
 const emailSchema = Joi.object({

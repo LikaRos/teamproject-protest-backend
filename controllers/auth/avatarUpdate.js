@@ -10,7 +10,6 @@ const avatarUpdate = async (req, res) => {
 
     const { path: tempUpload, originalname } = req.file;
     const extention = originalname.split(".").pop();
-    // const [extention] = originalname.split(".").reverse()
     const filename = `${_id}.${extention}`;
     const resultUpload = path.join(avatarDir, filename);
     await fs.rename(tempUpload, resultUpload);
