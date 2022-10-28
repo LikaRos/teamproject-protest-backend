@@ -1,5 +1,5 @@
 const passport = require("passport");
-require("./controllers/user-google-auth/passportConfig")(passport);
+require("../../controllers/user-google-auth/passportConfig")(passport);
 const express = require("express");
 const router = express.Router();
 

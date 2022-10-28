@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose.model;
+const { Schema, model } = require("mongoose");
+
 const GoogleAuthSchema = new Schema({
   google: {
     id: {
@@ -13,5 +13,5 @@ const GoogleAuthSchema = new Schema({
     },
   },
 });
-const UserGoogle = mongoose.model("UserGoogle", GoogleAuthSchema);
+const UserGoogle = model("UserGoogle", GoogleAuthSchema);
 module.exports = UserGoogle;
