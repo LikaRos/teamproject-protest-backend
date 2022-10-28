@@ -12,7 +12,7 @@ const getResults = async (req, res) => {
 
   const questions = await Question.find({ _id: { $in: ids } });
 
-  const writeAnswersQuantity = answers.reduce((acc, answer) => {
+  const rightAnswersQuantity = answers.reduce((acc, answer) => {
     const checkAnswer = questions.find((question) => String(question._id) === answer.id);
 
     if (checkAnswer && checkAnswer.rightAnswer === answer.answer) {
@@ -23,7 +23,7 @@ const getResults = async (req, res) => {
 
   const result = {
     questionsQuantity: questions.length,
-    writeAnswersQuantity,
+    rightAnswersQuantity,
   };
 
   res.json(result);
