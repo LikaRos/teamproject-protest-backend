@@ -14,14 +14,8 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
   (req, res) => {
-    res.redirect("/profile/");
+    res.redirect(`http://localhost:3000/home`);
   }
 );
-
-// прямий редірект
-router.get("/profile", (req, res) => {
-  console.log(req);
-  res.send(req);
-});
 
 module.exports = router;
