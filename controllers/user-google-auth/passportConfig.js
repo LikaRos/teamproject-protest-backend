@@ -14,7 +14,7 @@ module.exports = (passport) => {
       async (request, accessToken, refreshToken, profile, done) => {
         try {
           const existingUser = await User.findOne({
-            "google.id": profile.id,
+            id: profile.id,
           });
           if (existingUser) {
             return done(null, existingUser);
