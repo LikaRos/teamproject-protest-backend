@@ -7,7 +7,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/api/googleAuth/google/callback",
+        callbackURL: "http://localhost:3001/api/googleAuth/google/callback", // ЗРОБИТИ ДИНАМІЧНИМ TODO
         passReqToCallback: true,
       },
       async (request, accessToken, refreshToken, profile, done) => {
