@@ -1,20 +1,39 @@
 const passport = require("passport");
 require("../../controllers/user-google-auth/passportConfig")(passport);
 const express = require("express");
+const { User } = require("../../models/user");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-// гугл сайн ін пейж
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
 
-// повертаємо всі місц
 router.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
-  (req, res) => {
-    res.redirect(`http://localhost:3000/home`); // TODO ЗРОБИТИ ДИНАМІЧНИМ
+  async (req, res, next) => {
+    try {
+      const { email, name, id } = req.user;
+
+      const payload = {
+        id: id,
+      };
+
+      const token = jwt.sign(payload, process.env.SECRET_KEY, {
+        expiresIn: "1h",
+      });
+
+      await User.findByIdAndUpdate(id, { token });
+      await User.findByIdAndUpdate(id, { verify: true });
+      res.redirect(
+        `${process.env.FRONT_URL}/home?email=${email}&name=${name}&token=${token}`
+      );
+    } catch (error) {
+      next(error);
+    }
   }
 );
 

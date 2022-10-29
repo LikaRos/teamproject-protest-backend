@@ -1,5 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
-const UserGoogle = require("../../models/googleUserModel");
+const { User } = require("../../models/user");
+require("dotenv").config();
 
 module.exports = (passport) => {
   passport.use(
@@ -7,25 +8,24 @@ module.exports = (passport) => {
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/api/googleAuth/google/callback", // ЗРОБИТИ ДИНАМІЧНИМ TODO
+        callbackURL: `${process.env.BASE_URL}/api/googleAuth/google/callback`,
         passReqToCallback: true,
       },
       async (request, accessToken, refreshToken, profile, done) => {
         try {
-          const existingUser = await UserGoogle.findOne({
+          const existingUser = await User.findOne({
             "google.id": profile.id,
           });
           if (existingUser) {
             return done(null, existingUser);
           }
 
-          const newUser = new UserGoogle({
+          const newUser = new User({
             method: "google",
-            google: {
-              id: profile.id,
-              name: profile.displayName,
-              email: profile.emails[0].value,
-            },
+            id: profile.id,
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            avatarURL: profile.photos[0].value,
           });
           await newUser.save();
           return done(null, newUser);

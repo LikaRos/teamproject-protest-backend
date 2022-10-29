@@ -4,6 +4,10 @@ const { Schema, model } = require("mongoose");
 const handleMongooseSchemaError = require("../helpers/handleMongooseSchemaError");
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [false],
+    },
     email: {
       type: String,
       required: [true, "Email is required"],
@@ -11,12 +15,12 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [false],
       minlength: 16,
     },
     avatarURL: {
       type: String,
-      required: true,
+      required: [true, "avatar required"],
     },
     verify: {
       type: Boolean,
@@ -24,7 +28,7 @@ const userSchema = new Schema(
     },
     verificationToken: {
       type: String,
-      required: [true, "Verify token is required"],
+      required: [false],
     },
     token: {
       type: String,
