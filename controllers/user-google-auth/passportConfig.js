@@ -7,7 +7,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "http://localhost:3001/google/callback",
+        callbackURL: "http://localhost:3001/api/googleAuth/google/callback",
         passReqToCallback: true,
       },
       async (request, accessToken, refreshToken, profile, done) => {
@@ -19,7 +19,6 @@ module.exports = (passport) => {
             return done(null, existingUser);
           }
 
-          console.log("Creating new user...");
           const newUser = new UserGoogle({
             method: "google",
             google: {
