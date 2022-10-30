@@ -14,7 +14,7 @@ module.exports = (passport) => {
       async (request, accessToken, refreshToken, profile, done) => {
         try {
           const existingUser = await User.findOne({
-            id: profile.id,
+            email: profile.emails[0].value,
           });
           if (existingUser) {
             return done(null, existingUser);
