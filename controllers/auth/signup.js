@@ -15,8 +15,8 @@ const register = async (req, res) => {
   if (user) {
     throw RequestError(409, "Email in use");
   }
-  if (!user) {
-    throw RequestError(401, "Wrong email");
+  if (user) {
+    throw RequestError(400, "Missing required fields");
   }
   const hashPassword = await bcrypt.hash(password, 10);
   const verificationToken = nanoid();
