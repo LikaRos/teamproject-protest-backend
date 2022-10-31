@@ -5,6 +5,8 @@ require("./controllers/user-google-auth/passportConfig")(passport);
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 // const fs = require("fs/promises");
 // const nanoid = require("nanoid");
 // const path = require("path");
@@ -25,6 +27,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/questions", questionsRouter);
 app.set("json space", 8);
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
 });
