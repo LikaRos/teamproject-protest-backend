@@ -104,7 +104,6 @@ const createVerifyEmail = (to, verificationToken) => {
 
 </div></div></div><div id=":13x" class="ii gt" style="display:none"><div id=":13y" class="a3s aiL "></div></div><div class="hi"></div></div>`,
   };
-  console.log(mail);
   return mail;
 };
 

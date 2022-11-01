@@ -9,7 +9,6 @@ const sendEmail = async (data) => {
     from: "olabramov@meta.ua",
     ...data,
   };
-  console.log(mail);
   await sgMail.send(mail);
 
   return true;
