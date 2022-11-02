@@ -29,7 +29,7 @@ router.get(
       await User.findByIdAndUpdate(id, { token });
       await User.findByIdAndUpdate(id, { verify: true });
       res.redirect(
-        `${process.env.FRONT_URL}/home?email=${email}&name=${name}&token=${token}`
+        `${process.env.FRONT_URL}/auth?email=${email}&name=${name}&token=${token}`
       );
     } catch (error) {
       next(error);
