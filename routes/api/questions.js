@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/:type/random", ctrlWrapper(ctrl.getRandomQuestions));
 
-router.get("/result", ctrlWrapper(ctrl.getResults));
+router.post("/result", ctrlWrapper(ctrl.getResults));
 // localhost:3001/api/questions/tech/random
 
 // localhost:3001/api/questions/theory/random;
