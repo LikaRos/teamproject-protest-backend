@@ -1,4 +1,5 @@
 const { User } = require("../../models/user");
+require("dotenv").config();
 
 const { RequestError } = require("../../helpers");
 
@@ -14,9 +15,7 @@ const verifyEmail = async (req, res) => {
     verificationToken: "",
   });
 
-  res.json({
-    message: "Verification successful",
-  });
+  res.redirect(`${process.env.FRONT_URL}/home`);
 };
 
 module.exports = verifyEmail;
