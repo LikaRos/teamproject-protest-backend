@@ -6,11 +6,12 @@ const getCurrentUser = async (req, res) => {
   if (!user) {
     throw new RequestError(401, 'Not authorized');
   }
-  const { email, verify } = user;
+  const { email, verify, token } = user;
 
   res.status(200).json({
     email,
     verify,
+    token,
   });
 };
 
