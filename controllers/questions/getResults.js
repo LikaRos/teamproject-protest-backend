@@ -12,6 +12,8 @@ const getResults = async (req, res) => {
 
   const questions = await Question.find({ _id: { $in: ids } });
 
+  const rightAnswers = questions.map(({ rightAnswer, _id }) => ({ rightAnswer, _id }));
+
   const themeOfTests = questions[0].type;
 
   const rightAnswersQuantity = answers.reduce((acc, answer) => {
@@ -27,6 +29,7 @@ const getResults = async (req, res) => {
     questionsQuantity: questions.length,
     rightAnswersQuantity,
     themeOfTests,
+    rightAnswers,
   };
 
   res.json(result);
