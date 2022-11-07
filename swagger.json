@@ -139,12 +139,16 @@
         }
       }
     },
-    "/qa-test/tech": {
+    "/tech/random": {
       "get": {
-        "tags": ["QA-test"],
+        "tags": ["QA-technical-test"],
         "summary": "Get QA tech test questions",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -167,12 +171,16 @@
         }
       }
     },
-    "/qa-test/theory": {
+    "/theory/random": {
       "get": {
-        "tags": ["QA-test"],
+        "tags": ["QA-theory-test"],
         "summary": "Get QA theory test questions",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -195,17 +203,21 @@
         }
       }
     },
-    "/qa-test/tech-results": {
+    "/results": {
       "post": {
-        "tags": ["QA-test"],
-        "summary": "Get QA tech test results",
+        "tags": ["QA-test-result"],
+        "summary": "Post QA test results",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetTechResults"
+                "$ref": "#/components/schemas/PostResults"
               }
             }
           }
@@ -232,49 +244,16 @@
         }
       }
     },
-    "/qa-test/theory-results": {
-      "post": {
-        "tags": ["QA-test"],
-        "summary": "Get QA theory test results",
-        "parameters": [],
-        "security": [{ "Bearer": [] }],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetTheoryResults"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TestResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request (invalid request body / no token provided)",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized (invalid access token)",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/users/current": {
+    "/user": {
       "get": {
         "tags": ["User"],
         "summary": "Get all your info",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -707,7 +686,7 @@
           }
         ]
       },
-      "GetTechResults": {
+      "PostResults": {
         "type": "object",
         "properties": {
           "answers": {
@@ -776,79 +755,6 @@
             {
               "questionId": 2,
               "answer": "All options are incorrect"
-            }
-          ]
-        }
-      },
-      "GetTheoryResults": {
-        "type": "object",
-        "properties": {
-          "answers": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "questionId": {
-                  "type": "integer",
-                  "description": "Question's id"
-                },
-                "answer": {
-                  "type": "string",
-                  "description": "Answer to the question"
-                }
-              }
-            }
-          }
-        },
-        "example": {
-          "answers": [
-            {
-              "questionId": 25,
-              "answer": "1: 6: 10: 1000"
-            },
-            {
-              "questionId": 22,
-              "answer": "Data stream"
-            },
-            {
-              "questionId": 19,
-              "answer": "Test cases should be reviewed and revised regularly"
-            },
-            {
-              "questionId": 17,
-              "answer": "When we press the submit button"
-            },
-            {
-              "questionId": 21,
-              "answer": "Causes and effects of coverage"
-            },
-            {
-              "questionId": 14,
-              "answer": "Hidden defect"
-            },
-            {
-              "questionId": 13,
-              "answer": "Vulnerability testing"
-            },
-            {
-              "questionId": 27,
-              "answer": "V model"
-            },
-            {
-              "questionId": 29,
-              "answer": "All options are incorrect"
-            },
-            {
-              "questionId": 30,
-              "answer": "Gorilla Testing"
-            },
-            {
-              "questionId": 3,
-              "answer": "All options are correct"
-            },
-            {
-              "questionId": 2,
-              "answer": "Requirements Management - Product Analysis - Developing a Test Strategy and Planning Quality Control Procedures - Prototype Testing - Generating Test Documentation - Basic Testing - Stabilization - Operation"
             }
           ]
         }
