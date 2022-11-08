@@ -139,11 +139,14 @@
         }
       }
     },
-    "/tech/random": {
+    "/questions/:type/random": {
       "get": {
-        "tags": ["QA-technical-test"],
-        "summary": "Get QA tech test questions",
-        "parameters": [],
+        "tags": ["Questions"],
+        "summary": "Get QA random test questions",
+        "parameters": {
+          "type": "srting",
+          "enum": ["tech", "theory"]
+        },
         "security": [
           {
             "Bearer": []
@@ -155,7 +158,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/QATechTest"
+                  "$ref": "#/components/schemas/QATest"
                 }
               }
             }
@@ -171,41 +174,9 @@
         }
       }
     },
-    "/theory/random": {
-      "get": {
-        "tags": ["QA-theory-test"],
-        "summary": "Get QA theory test questions",
-        "parameters": [],
-        "security": [
-          {
-            "Bearer": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/QATheoryTest"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request (no token provided)",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized (invalid access token)",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/results": {
+    "/questions/results": {
       "post": {
-        "tags": ["QA-test-result"],
+        "tags": ["Result"],
         "summary": "Post QA test results",
         "parameters": [],
         "security": [
@@ -217,7 +188,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostResults"
+                "$ref": "#/components/schemas/ResultsRequest"
               }
             }
           }
@@ -228,7 +199,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TestResult"
+                  "$ref": "#/components/schemas/ResultsResponse"
                 }
               }
             }
@@ -361,7 +332,7 @@
           }
         }
       },
-      "QATechTest": {
+      "Questions": {
         "type": "array",
         "items": {
           "type": "object",
@@ -522,262 +493,166 @@
           }
         ]
       },
-      "QATheoryTest": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "question": {
-              "type": "string",
-              "description": "A question"
-            },
-            "questionId": {
-              "type": "integer",
-              "description": "Question's id"
-            },
-            "answers": {
-              "type": "array",
-              "description": "Answers to the question",
-              "items": {
-                "type": "string",
-                "description": "Answer options"
-              }
-            }
-          }
-        },
-        "example": [
-          {
-            "question": "White box testing does not concern",
-            "questionId": 21,
-            "answers": [
-              "Decision-making",
-              "Causes and effects of coverage",
-              "Multiple coverage conditions",
-              "Coverage Statement",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "What are the main types of locators in Selenium?",
-            "questionId": 4,
-            "answers": [
-              "ID, ClassName",
-              "Name, TagName",
-              "LinkText, PartialLinkText",
-              "Xpath, CSS Selector, DOM",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "Most often, viewing items in the Google Chrome browser on Mac is launched by this key combination",
-            "questionId": 7,
-            "answers": [
-              "Cmd+Opt+O",
-              "Cmd+Opt+R",
-              "Cmd+Opt+J",
-              "Cmd+Opt+N",
-              "Cmd+Opt+W"
-            ]
-          },
-          {
-            "question": "Testing outside of normal performance is",
-            "questionId": 15,
-            "answers": [
-              "Stress testing",
-              "Performance testing",
-              "Functional testing",
-              "Centiliter",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "What does 'CI' stands for in QA?",
-            "questionId": 1,
-            "answers": [
-              "Connection interface",
-              "Nothing",
-              "Continuous Integration",
-              "Centiliter"
-            ]
-          },
-          {
-            "question": "navigate().refresh(). This navigation command in Selenium:",
-            "questionId": 10,
-            "answers": [
-              "Returns the user to the previous page from the browser history",
-              "Allows the user to navigate to the next page according to the browser history",
-              "Used to refresh the browser page",
-              "Allows the user to open a new window in the browser and follow the specified URL",
-              "There is no such command"
-            ]
-          },
-          {
-            "question": "______ is an existing defect that has not yet caused the failure because the conditions required to trigger the defect are not met",
-            "questionId": 14,
-            "answers": [
-              "Hidden defect and disguised defect",
-              "Hidden defect",
-              "Disguised defect",
-              "Defect",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "What's wrong appealing to Smoke and sanity tests?",
-            "questionId": 18,
-            "answers": [
-              "If both are running, do sanity tests first and then smoke testing",
-              "Sanity Testing is also called Tester Acceptance Testing",
-              "Smoke and sanity tests can be performed using an automation tool",
-              "Smoke testing performed for a specific build is also called build verification test",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "navigate().back(). This navigation command in Selenium:",
-            "questionId": 8,
-            "answers": [
-              "Returns the user to the previous page from the browser history",
-              "Allows the user to navigate to the next page according to the browser history",
-              "Used to refresh the browser page",
-              "Allows the user to open a new window in the browser and follow the specified URL",
-              "There is no such command"
-            ]
-          },
-          {
-            "question": "The Paradox Pesticide Testing Principle suggests that",
-            "questionId": 19,
-            "answers": [
-              "Finding and eliminating defects does not help if the system is unstable",
-              "Testing is done differently in a different context",
-              "Test cases should be reviewed and revised regularly",
-              "Clustering modules that contain most of the defects",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "Which of the following is not part of specification-based testing?",
-            "questionId": 22,
-            "answers": [
-              "State transition",
-              "Decision table",
-              "Boundary value analysis",
-              "Data stream",
-              "All options are correct",
-              "All options are incorrect"
-            ]
-          },
-          {
-            "question": "navigate().to(). This navigation command in Selenium:",
-            "questionId": 11,
-            "answers": [
-              "Returns the user to the previous page from the browser history",
-              "Allows the user to navigate to the next page according to the browser history",
-              "Used to refresh the browser page",
-              "Allows the user to open a new window in the browser and follow the specified URL",
-              "There is no such command"
-            ]
-          }
-        ]
-      },
-      "PostResults": {
+      "ResultsResponse": {
         "type": "object",
         "properties": {
-          "answers": {
+          "questionsQuantity": {
+            "type": "number",
+            "description": "Questions quantity",
+            "example": "12"
+          },
+          "rightAnswersQuantity": {
+            "type": "number",
+            "description": "Quantity of right answers",
+            "example": "1"
+          },
+          "themeOfTests": {
+            "type": "string",
+            "enum": ["tech", "theory"],
+            "description": "Type of test",
+            "example": "tech"
+          },
+          "rightAnswers": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "questionId": {
-                  "type": "integer",
-                  "description": "Question's id"
-                },
-                "answer": {
+                "rightAnswer": {
                   "type": "string",
-                  "description": "Answer to the question"
+                  "description": "Correct answer on a question",
+                  "example": "All options are correct"
+                },
+                "_id": {
+                  "type": "string",
+                  "description": "MongoDb id number",
+                  "example": "63582abcef13d44c24d0396e"
                 }
               }
             }
           }
         },
         "example": {
-          "answers": [
+          "questionsQuantity": 12,
+          "rightAnswersQuantity": 6,
+          "themeOfTests": "tech",
+          "rightAnswers": [
             {
-              "questionId": 25,
-              "answer": "Interface testing"
+              "rightAnswer": "All options are correct",
+              "_id": "63582abcef13d44c24d03969"
             },
             {
-              "questionId": 22,
-              "answer": "Currency testing"
+              "rightAnswer": "All options are correct",
+              "_id": "63582abcef13d44c24d0396a"
             },
             {
-              "questionId": 19,
-              "answer": "All options are correct"
+              "rightAnswer": "All options are correct",
+              "_id": "63582abcef13d44c24d0396e"
             },
             {
-              "questionId": 17,
-              "answer": "Software testing life cycle"
+              "rightAnswer": "RUP",
+              "_id": "63582abcef13d44c24d0396f"
             },
             {
-              "questionId": 21,
-              "answer": "Test case"
+              "rightAnswer": "Learnability, efficiency, memorability, errors, satisfaction",
+              "_id": "63582abcef13d44c24d03976"
             },
             {
-              "questionId": 14,
-              "answer": "Verification of software, according to the test plan, test procedures and relevant documentation, taking into account the wishes of the client"
+              "rightAnswer": "A defect that forces you to stop the testing progress",
+              "_id": "63582abcef13d44c24d03977"
             },
             {
-              "questionId": 13,
-              "answer": "This is testing by executing a code or program with different input values and confirming the results"
+              "rightAnswer": "All options are correct",
+              "_id": "63582abcef13d44c24d0397a"
             },
             {
-              "questionId": 10,
-              "answer": "All options are correct"
+              "rightAnswer": "Test case",
+              "_id": "63582abcef13d44c24d0397c"
             },
             {
-              "questionId": 6,
-              "answer": "eXtreme Programming"
+              "rightAnswer": "Testing the web application",
+              "_id": "63582abcef13d44c24d0397e"
             },
             {
-              "questionId": 5,
-              "answer": "Kanban"
+              "rightAnswer": "Functional testing",
+              "_id": "63582abcef13d44c24d0397f"
             },
             {
-              "questionId": 3,
-              "answer": "All options are correct"
+              "rightAnswer": "Interface testing",
+              "_id": "63582abcef13d44c24d03980"
             },
             {
-              "questionId": 2,
-              "answer": "All options are incorrect"
+              "rightAnswer": "Gamma testing",
+              "_id": "63582abcef13d44c24d03981"
             }
           ]
         }
       },
-      "TestResult": {
-        "type": "object",
-        "properties": {
-          "result": {
-            "type": "string",
-            "description": "Test's result",
-            "example": "91%"
-          },
-          "mainMessage": {
-            "type": "string",
-            "description": "Result's main message",
-            "example": "Great!"
-          },
-          "secondaryMessage": {
-            "type": "string",
-            "description": "Result's secondary message",
-            "example": "You have very strong QA knowledge"
+      "ResultsRequest": {
+        "type": "array",
+        "description": "Answers on questions",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "MongoDb id number"
+            },
+            "answer": {
+              "type": "string",
+              "description": "Answer on test"
+            }
           }
-        }
+        },
+        "example": [
+          {
+            "id": "63582e4eef13d44c24d03986",
+            "answer": "Possibility of execution outside working hours"
+          },
+          {
+            "id": "63582e4eef13d44c24d0399f",
+            "answer": "External and Internal resources, respectively"
+          },
+          {
+            "id": "63582e4eef13d44c24d0398b",
+            "answer": "Allows the user to navigate to the next page according to the browser history"
+          },
+          {
+            "id": "63582e4eef13d44c24d03988",
+            "answer": "html//body/div[3]/div/div[1]/div/div/div[1]/div/input"
+          },
+          {
+            "id": "63582e4eef13d44c24d03996",
+            "answer": "Testing is done differently in a different context"
+          },
+          {
+            "id": "63582e4eef13d44c24d0398f",
+            "answer": "Severity"
+          },
+          {
+            "id": "63582e4eef13d44c24d03998",
+            "answer": "Decision-making"
+          },
+          {
+            "id": "63582e4eef13d44c24d03985",
+            "answer": "Product analysis - Working with requirements -. Developing a test strategy and planning quality control procedures - Creating test documentation - Prototype testing - Basic testing - Stabilization - Operation"
+          },
+          {
+            "id": "63582e4eef13d44c24d039a2",
+            "answer": "All options are correct"
+          },
+          {
+            "id": "63582e4eef13d44c24d03999",
+            "answer": "Decision table"
+          },
+          {
+            "id": "63582e4eef13d44c24d03990",
+            "answer": "Fuzzy testing"
+          },
+          {
+            "id": "63582e4eef13d44c24d03991",
+            "answer": "All options are correct"
+          }
+        ]
       },
       "GetUserInfo": {
         "type": "object",
