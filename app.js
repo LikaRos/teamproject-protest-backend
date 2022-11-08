@@ -7,10 +7,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-// const fs = require("fs/promises");
-// const nanoid = require("nanoid");
-// const path = require("path");
-// const multer = require("multer");
+
 const authRouter = require("./routes/api/auth");
 const questionsRouter = require("./routes/api/questions");
 const googleAuthRouter = require("./routes/api/googleAuth");
