@@ -12,12 +12,17 @@ const getResults = async (req, res) => {
 
   const questions = await Question.find({ _id: { $in: ids } });
 
-  const rightAnswers = questions.map(({ rightAnswer, _id }) => ({ rightAnswer, _id }));
+  const rightAnswers = questions.map(({ rightAnswer, _id }) => ({
+    rightAnswer,
+    _id,
+  }));
 
   const themeOfTests = questions[0].type;
 
   const rightAnswersQuantity = answers.reduce((acc, answer) => {
-    const checkAnswer = questions.find((question) => String(question._id) === answer.id);
+    const checkAnswer = questions.find(
+      (question) => String(question._id) === answer.id
+    );
 
     if (checkAnswer && checkAnswer.rightAnswer === answer.answer) {
       acc += 1;
@@ -31,7 +36,7 @@ const getResults = async (req, res) => {
     themeOfTests,
     rightAnswers,
   };
-
+  console.log(result);
   res.json(result);
 };
 
