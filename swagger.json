@@ -21,7 +21,7 @@
     }
   ],
   "paths": {
-    "/users/signup": {
+    "/auth/users/signup": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -59,7 +59,7 @@
         }
       }
     },
-    "/users/login": {
+    "/auth/users/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User authentication",
@@ -97,7 +97,7 @@
         }
       }
     },
-    "/auth/logout": {
+    "/auth/users/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "Logout",
@@ -139,20 +139,26 @@
         }
       }
     },
-    "/questions/:type/random": {
+    "/questions/{type}/random": {
       "get": {
         "tags": ["Questions"],
-        "summary": "Get QA random test questions",
-        "parameters": {
-          "type": "srting",
-          "enum": ["tech", "theory"],
-          "token": true
-        },
-        "security": [
+        "summary": "Get 12 QA random test questions TYPES: tech | theory",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
           {
-            "Bearer": []
+            "in": "path",
+            "name": "type",
+            "schema": {
+              "type": "srting",
+              "enum": ["tech", "theory"]
+            },
+
+            "required": true,
+            "description": "Test type tech or theory",
+            "token": true
           }
         ],
+
         "responses": {
           "200": {
             "description": "Successful operation",
