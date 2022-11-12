@@ -223,7 +223,7 @@
         }
       }
     },
-    "/user": {
+    "/user/current": {
       "get": {
         "tags": ["User"],
         "summary": "Get all your info",
