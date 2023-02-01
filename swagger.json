@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "servers": [{ "url": "https://pro-test-team-project.herokuapp.com/" }],
+  "servers": [{ "url": "teamproject-protest-backend.vercel.app" }],
   "tags": [
     {
       "name": "Auth",
