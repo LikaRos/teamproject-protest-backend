@@ -10,7 +10,7 @@ const swaggerDocument = require("./swagger.json");
 
 const authRouter = require("./routes/api/auth");
 const questionsRouter = require("./routes/api/questions");
-const googleAuthRouter = require("./routes/api/googleAuth");
+// const googleAuthRouter = require("./routes/api/googleAuth");
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-app.use("/api/googleAuth", googleAuthRouter);
+// app.use("/api/googleAuth", googleAuthRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/questions", questionsRouter);
 app.set("json space", 8);
