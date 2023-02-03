@@ -2,9 +2,11 @@
     "version": 2, 
     "name": "pro-test", 
     "builds": [ 
-      { "src": "./server.js", "use": "@vercel/node" }
+      { "src": "server.js", "use": "@vercel/node" }
     ], 
     "routes": [ 
-        { "src": "/(.*)", "dest": "/" } 
+        { "src": "server.js", "dest": "server.js" } 
     ] 
  }
+
+ 
