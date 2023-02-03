@@ -2,10 +2,10 @@
    "version": 2,
    "name": "teamproject-protest-backend",
    "builds": [
-      { "src": "index.js", "use": "@vercel/node" }
+      { "src": "./index.js", "use": "@vercel/node" }
    ],
    "routes": [
-      { "src": "/api", "dest": "/auth.js" }
+      { "src": "/(.*)", "dest": "/index.js" }
    ]
 }
 
