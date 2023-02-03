@@ -10,7 +10,7 @@ const swaggerDocument = require("./swagger.json");
 
 const authRouter = require("./routes/api/auth");
 const questionsRouter = require("./routes/api/questions");
-// const googleAuthRouter = require("./routes/api/googleAuth");
+const googleAuthRouter = require("./routes/api/googleAuth");
 const app = express();
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
@@ -19,18 +19,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-// app.use("/api/googleAuth", googleAuthRouter);
+app.use("/api/googleAuth", googleAuthRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/questions", questionsRouter);
 app.set("json space", 8);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-app.get("/", (req, res) => {
-	res.status(200).json({ message: "Express on Vercel" });
- });
- 
-
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
 });

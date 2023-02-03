@@ -1,15 +1,10 @@
 {
-  "name": "teamproject-protest-backend",
+  "name": "pro-test",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
-  "engines": {
-    "node": "18.x"
-  },
   "private": true,
   "scripts": {
-    "start": "npm i && node index.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon ./index.js",
+    "start": "cross-env NODE_ENV=production node ./server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
@@ -30,11 +25,9 @@
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "sendgrid": "^5.2.3",
-    "swagger-ui-express": "^4.5.0",
-    "vercel": "^28.15.0"
+    "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
-    "@vercel/node": "^2.9.0",
     "eslint": "7.19.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "16.0.3",
