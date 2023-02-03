@@ -31,7 +31,8 @@
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "sendgrid": "^5.2.3",
-    "swagger-ui-express": "^4.5.0"
+    "swagger-ui-express": "^4.5.0",
+    "vercel": "^28.15.0"
   },
   "devDependencies": {
     "eslint": "7.19.0",
