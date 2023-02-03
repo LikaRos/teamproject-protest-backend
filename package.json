@@ -2,14 +2,14 @@
   "name": "teamproject-protest-backend",
   "version": "0.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": "18.x"
   },
   "private": true,
   "scripts": {
-    "start": "npm i && node server.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
+    "start": "npm i && node index.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./index.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
   },
