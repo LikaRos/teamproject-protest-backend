@@ -25,6 +25,12 @@ app.use("/api/questions", questionsRouter);
 app.set("json space", 8);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.use("/", (req, res) => {
+	res.status(200).json({ message: "Express on Vercel" });
+ });
+ 
+
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
 });
