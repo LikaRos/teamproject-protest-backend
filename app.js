@@ -26,7 +26,7 @@ app.set("json space", 8);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
 	res.status(200).json({ message: "Express on Vercel" });
  });
  
