@@ -3,13 +3,13 @@
   "info": {
     "version": "2.0.4",
     "title": "ProTest API docs",
-    "description": "API documentation for GoIT project 'ProTest'. [Backend github repository](https://likaros.github.io/teamproject-protest_backend/)",
+    "description": "API documentation for GoIT project 'ProTest'. [Backend github repository](https://likaros.github.io/teamproject-protest-backend/)",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "servers": [{ "url": "teamproject-protest-backend.vercel.app" }],
+  "servers": [{ "url": "https://teamproject-protest-backend.onrender.com" }],
   "tags": [
     {
       "name": "Auth",
