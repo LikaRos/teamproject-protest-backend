@@ -1,6 +1,6 @@
 {
    "version": 2,
-   "name": "teamproject_protest_backend",
+   "name": "teamproject-protest-backend",
    "builds": [
       { "src": "server.js", "use": "@vercel/node" }
    ],
